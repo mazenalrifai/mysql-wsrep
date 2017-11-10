@@ -49,6 +49,8 @@
 using std::max;
 using std::min;
 
+int wild_experiment_number_of_selects = 0;
+
 static store_key *get_store_key(THD *thd,
 				Key_use *keyuse, table_map used_tables,
 				KEY_PART_INFO *key_part, uchar *key_buff,
@@ -1163,6 +1165,8 @@ mysql_select(THD *thd,
   ORDER *first_order= NULL;
   ORDER *first_group= NULL;
   DBUG_ENTER("mysql_select");
+
+  ++wild_experiment_number_of_selects;
 
   if (order)
   {

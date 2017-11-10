@@ -174,6 +174,8 @@
 */
 #define OPTION_ALLOW_BATCH              (ULL(1) << 36) // THD, intern (slave)
 
+extern int wild_experiment_number_of_selects;
+
 /*
   Check how many bytes are available on buffer.
 

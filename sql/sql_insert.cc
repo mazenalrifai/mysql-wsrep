@@ -704,6 +704,14 @@ bool mysql_insert(THD *thd,TABLE_LIST *table_list,
 #endif /* WITH_PARITITION_STORAGE_ENGINE */
   DBUG_ENTER("mysql_insert");
 
+  const int wild_experiment_number_of_selects_orig = wild_experiment_number_of_selects;
+
+  if (wild_experiment_number_of_selects_orig != wild_experiment_number_of_selects)
+  {
+    my_error(ER_CANT_EXECUTE_IN_READ_ONLY_TRANSACTION, MYF(0));
+    DBUG_RETURN(TRUE);
+  }
+
   /*
     Upgrade lock type if the requested lock is incompatible with
     the current connection mode or table operation.
