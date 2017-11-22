@@ -1,0 +1,21 @@
+CREATE TABLE t1(a INT);
+
+let $i= 10000;
+
+disable_query_log;
+
+while ($i)
+
+{
+
+  --error 0,1150
+
+  INSERT DELAYED INTO t1 VALUES(1),(2),(3),(4),(5),(6),(7),(8),(9),(10),(11),(12),(13),(14),(15),(16),(17),(18),(19),(20);
+
+  dec $i;
+
+}
+
+enable_query_log;
+
+DROP TABLE t1;
